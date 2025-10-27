@@ -1,0 +1,23 @@
+<button
+    (click)="onClick()"
+    [class.button--full-width]="fullWidth()"
+    [class.button--loading]="loading()"
+    [class.button--outline]="variant() === 'outline'"
+    [class.button--primary]="variant() === 'primary'"
+    [class.button--secondary]="variant() === 'secondary'"
+    [disabled]="disabled() || loading()"
+    [type]="type()"
+    class="button"
+>
+    @if (loading()) {
+        <i class="button__icon button__icon--loading fas fa-spinner fa-spin"></i>
+    } @else if (icon()) {
+        <i
+            class="button__icon fas"
+            [class]="'button__icon fas ' + icon()"
+        ></i>
+    }
+    <span class="button__text">
+        <ng-content></ng-content>
+    </span>
+</button>

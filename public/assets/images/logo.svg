@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Modern rounded square background with gradient -->
+  <rect x="20" y="20" width="160" height="160" rx="40" fill="url(#bgGradient)"/>
+  
+  <!-- Subtle geometric pattern overlay -->
+  <circle cx="160" cy="40" r="30" fill="white" opacity="0.05"/>
+  <circle cx="40" cy="160" r="25" fill="white" opacity="0.05"/>
+  
+  <!-- Main icon: Combined star + people concept -->
+  <g transform="translate(100, 85)">
+    <!-- Large star with modern flat design -->
+    <path d="M 0 -25 L 7 -5 L 28 -5 L 11 7 L 17 27 L 0 15 L -17 27 L -11 7 L -28 -5 L -7 -5 Z" 
+          fill="white" opacity="0.95" filter="url(#glow)"/>
+    
+    <!-- Rating number inside star -->
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="20" font-weight="bold" 
+          fill="url(#bgGradient)" text-anchor="middle" dominant-baseline="middle">5</text>
+  </g>
+  
+  <!-- Connected people icons (modern minimalist style) -->
+  <g opacity="0.9">
+    <!-- Left person - simplified circle + body -->
+    <circle cx="60" cy="130" r="10" fill="white"/>
+    <rect x="55" y="142" width="10" height="15" rx="5" fill="white"/>
+    
+    <!-- Center person -->
+    <circle cx="100" cy="140" r="10" fill="url(#accentGradient)"/>
+    <rect x="95" y="152" width="10" height="15" rx="5" fill="url(#accentGradient)"/>
+    
+    <!-- Right person -->
+    <circle cx="140" cy="130" r="10" fill="white"/>
+    <rect x="135" y="142" width="10" height="15" rx="5" fill="white"/>
+    
+    <!-- Connection lines between people -->
+    <line x1="70" y1="135" x2="90" y2="145" stroke="white" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+    <line x1="110" y1="145" x2="130" y2="135" stroke="white" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Mini stars decoration at top -->
+  <g opacity="0.4">
+    <circle cx="75" cy="40" r="3" fill="white"/>
+    <circle cx="100" cy="35" r="4" fill="white"/>
+    <circle cx="125" cy="40" r="3" fill="white"/>
+  </g>
+  
+  <!-- Additional rating stars around main star (smaller) -->
+  <g opacity="0.6">
+    <!-- Top left small star -->
+    <path d="M 55 70 L 57 75 L 62 75 L 58 78 L 60 83 L 55 80 L 50 83 L 52 78 L 48 75 L 53 75 Z" 
+          fill="white" transform="scale(0.7)"/>
+    
+    <!-- Top right small star -->
+    <path d="M 145 70 L 147 75 L 152 75 L 148 78 L 150 83 L 145 80 L 140 83 L 142 78 L 138 75 L 143 75 Z" 
+          fill="white" transform="scale(0.7)"/>
+  </g>
+  
+  <!-- Decorative curved lines suggesting connection/sharing -->
+  <g opacity="0.25" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M 45 60 Q 70 70 90 75"/>
+    <path d="M 155 60 Q 130 70 110 75"/>
+  </g>
+  
+  <!-- Small accent circles for depth -->
+  <circle cx="35" cy="100" r="5" fill="white" opacity="0.15"/>
+  <circle cx="165" cy="100" r="5" fill="white" opacity="0.15"/>
+  
+  <!-- Subtle sparkle effects -->
+  <g opacity="0.5" fill="white">
+    <!-- Sparkle 1 -->
+    <circle cx="130" cy="55" r="2"/>
+    <rect x="129" y="50" width="2" height="10" rx="1"/>
+    <rect x="125" y="54" width="10" height="2" rx="1"/>
+    
+    <!-- Sparkle 2 -->
+    <circle cx="70" cy="110" r="1.5"/>
+    <rect x="69.5" y="106" width="1" height="8" rx="0.5"/>
+    <rect x="66" y="109" width="8" height="1" rx="0.5"/>
+  </g>
+  
+  <!-- Plus signs for rating addition concept -->
+  <g opacity="0.3" fill="url(#accentGradient)">
+    <text x="155" y="165" font-family="Arial, sans-serif" font-size="18" font-weight="bold">+</text>
+    <text x="38" y="50" font-family="Arial, sans-serif" font-size="16" font-weight="bold">+</text>
+  </g>
+</svg>

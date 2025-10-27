@@ -1,0 +1,25 @@
+{
+  "HEADER": {
+    "APP_NAME": "Rate Together",
+    "SWITCH_TO_LIGHT": "Переключить на светлую тему",
+    "SWITCH_TO_DARK": "Переключить на темную тему"
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Войдите в свой аккаунт",
+    "REGISTER_TITLE": "Создайте новый аккаунт",
+    "USERNAME": "Имя пользователя",
+    "USERNAME_PLACEHOLDER": "Введите имя пользователя",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "example@email.com",
+    "PASSWORD": "Пароль",
+    "PASSWORD_PLACEHOLDER": "Введите пароль",
+    "CONFIRM_PASSWORD": "Подтвердите пароль",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "Повторите пароль",
+    "LOGIN_BUTTON": "Войти",
+    "REGISTER_BUTTON": "Зарегистрироваться",
+    "NO_ACCOUNT": "Нет аккаунта?",
+    "HAVE_ACCOUNT": "Уже есть аккаунт?",
+    "SIGN_UP_LINK": "Зарегистрируйтесь",
+    "SIGN_IN_LINK": "Войдите"
+  }
+}

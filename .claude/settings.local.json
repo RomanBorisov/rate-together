@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm start)",
+      "Bash(timeout /t 10)",
+      "Bash(npm install:*)",
+      "Bash(timeout /t 15)",
+      "Bash(npx ng build:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

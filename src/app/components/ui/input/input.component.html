@@ -1,0 +1,24 @@
+<div class="input">
+    <label
+        [for]="id()"
+        class="input__label"
+    >
+        @if (icon()) {
+            <i
+                [class]="'input__icon fas ' + icon()"
+            ></i>
+        }
+        <span class="input__label-text">{{ label() }}</span>
+    </label>
+    <input
+        (blur)="onBlur()"
+        (input)="onInputChange($any($event.target).value)"
+        [disabled]="disabled"
+        [id]="id()"
+        [placeholder]="placeholder()"
+        [required]="required()"
+        [type]="type()"
+        [value]="value"
+        class="input__field"
+    />
+</div>

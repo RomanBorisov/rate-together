@@ -1,0 +1,54 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    &__icon {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    &__label-text {
+        // Additional styles if needed
+    }
+
+    &__field {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        font-size: 0.9375rem;
+        background: var(--input-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        color: var(--text-primary);
+        transition: all 0.2s ease;
+        font-family: inherit;
+
+        &::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px var(--primary-color-transparent);
+        }
+
+        &:hover:not(:focus):not(:disabled) {
+            border-color: var(--text-secondary);
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}

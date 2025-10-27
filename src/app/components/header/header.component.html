@@ -1,0 +1,46 @@
+<header class="header">
+    <div class="header__container">
+        <div class="header__logo-wrapper">
+            <a
+                class="header__logo"
+                routerLink="/"
+            >
+                <app-image
+                    class="header__logo-icon"
+                    [src]="'assets/images/logo.svg'"
+                    [alt]="'Rate Together Logo'"
+                />
+                <span class="header__logo-text">{{ 'HEADER.APP_NAME' | translate }}</span>
+            </a>
+        </div>
+
+        <nav class="header__nav">
+            <!-- Navigation will be added later -->
+        </nav>
+
+        <div class="header__actions">
+            <button
+                (click)="toggleLanguage()"
+                [attr.aria-label]="'Switch language'"
+                class="header__lang-toggle"
+                type="button"
+            >
+                <i class="header__lang-icon fas fa-globe"></i>
+                <span class="header__lang-text">{{ currentLanguage() }}</span>
+            </button>
+
+            <button
+                (click)="toggleTheme()"
+                [attr.aria-label]="(isDarkTheme() ? 'HEADER.SWITCH_TO_LIGHT' : 'HEADER.SWITCH_TO_DARK') | translate"
+                class="header__theme-toggle"
+                type="button"
+            >
+                <i
+                    [class.fa-moon]="!isDarkTheme()"
+                    [class.fa-sun]="isDarkTheme()"
+                    class="header__theme-icon fas"
+                ></i>
+            </button>
+        </div>
+    </div>
+</header>
