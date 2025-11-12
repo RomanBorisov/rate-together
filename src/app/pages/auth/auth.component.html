@@ -14,58 +14,58 @@
             </div>
 
             <form
-                (ngSubmit)="onSubmit()"
                 class="auth__form"
+                (ngSubmit)="onSubmit()"
             >
                 <!-- Username (registration only) -->
                 @if (isRegisterMode()) {
                     <app-input
                         id="username"
+                        icon="fa-user"
+                        name="username"
                         [type]="InputType.TEXT"
                         [label]="'AUTH.USERNAME' | translate"
-                        icon="fa-user"
                         [placeholder]="'AUTH.USERNAME_PLACEHOLDER' | translate"
-                        [(ngModel)]="username"
-                        name="username"
                         [required]="true"
+                        [(ngModel)]="username"
                     />
                 }
 
                 <!-- Email -->
                 <app-input
-                    [(ngModel)]="email"
+                    icon="fa-envelope"
+                    id="email"
+                    name="email"
                     [label]="'AUTH.EMAIL' | translate"
                     [placeholder]="'AUTH.EMAIL_PLACEHOLDER' | translate"
                     [required]="true"
                     [type]="InputType.EMAIL"
-                    icon="fa-envelope"
-                    id="email"
-                    name="email"
+                    [(ngModel)]="email"
                 />
 
                 <!-- Password -->
                 <app-input
-                    [(ngModel)]="password"
+                    icon="fa-lock"
+                    id="password"
+                    name="password"
                     [label]="'AUTH.PASSWORD' | translate"
                     [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
                     [required]="true"
                     [type]="InputType.PASSWORD"
-                    icon="fa-lock"
-                    id="password"
-                    name="password"
+                    [(ngModel)]="password"
                 />
 
                 <!-- Confirm Password (registration only) -->
                 @if (isRegisterMode()) {
                     <app-input
                         id="confirmPassword"
+                        icon="fa-lock"
+                        name="confirmPassword"
                         [type]="InputType.PASSWORD"
                         [label]="'AUTH.CONFIRM_PASSWORD' | translate"
-                        icon="fa-lock"
                         [placeholder]="'AUTH.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
-                        [(ngModel)]="confirmPassword"
-                        name="confirmPassword"
                         [required]="true"
+                        [(ngModel)]="confirmPassword"
                     />
                 }
 
@@ -85,9 +85,9 @@
                 <p class="auth__footer-text">
                     {{ (isLoginMode() ? 'AUTH.NO_ACCOUNT' : 'AUTH.HAVE_ACCOUNT') | translate }}
                     <button
-                        (click)="switchMode()"
                         class="auth__footer-link"
                         type="button"
+                        (click)="switchMode()"
                     >
                         {{ (isLoginMode() ? 'AUTH.SIGN_UP_LINK' : 'AUTH.SIGN_IN_LINK') | translate }}
                     </button>

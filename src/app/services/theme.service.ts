@@ -15,14 +15,14 @@ const STORAGE_KEYS = {
 export class ThemeService {
 
     // Create signal for theme
-    public theme = signal<Theme>(this.getInitialTheme());
+    public readonly theme = signal<Theme>(this._getInitialTheme());
 
     constructor() {
         // Effect to apply theme when it changes
         effect(() => {
             const currentTheme = this.theme();
-            this.applyTheme(currentTheme);
-            this.saveTheme(currentTheme);
+            this._applyTheme(currentTheme);
+            this._saveTheme(currentTheme);
         });
     }
 
@@ -30,7 +30,7 @@ export class ThemeService {
      * Toggle theme
      */
     public toggleTheme(): void {
-        this.theme.update(current => current === Theme.LIGHT
+        this.theme.update((current) => current === Theme.LIGHT
             ? Theme.DARK
             : Theme.LIGHT);
     }
@@ -45,7 +45,7 @@ export class ThemeService {
     /**
      * Get initial theme from localStorage or system settings
      */
-    private getInitialTheme(): Theme {
+    private _getInitialTheme(): Theme {
         // Check localStorage
         const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) as string | null;
         if (savedTheme === Theme.LIGHT || savedTheme === Theme.DARK) {
@@ -63,14 +63,14 @@ export class ThemeService {
     /**
      * Apply theme to document
      */
-    private applyTheme(theme: Theme): void {
+    private _applyTheme(theme: Theme): void {
         document.documentElement.setAttribute('data-theme', theme);
     }
 
     /**
      * Save theme to localStorage
      */
-    private saveTheme(theme: Theme): void {
+    private _saveTheme(theme: Theme): void {
         localStorage.setItem(STORAGE_KEYS.THEME, theme);
     }
 }

@@ -3,34 +3,34 @@ import { I18nService } from '../services/i18n.service';
 
 @Pipe({
     name: 'translate',
-    pure: false
+    pure: false // eslint-disable-line @angular-eslint/no-pipe-impure
 })
 export class TranslatePipe implements PipeTransform, OnDestroy {
-    private i18n = inject(I18nService);
+    private _i18n = inject(I18nService);
 
-    private cdr = inject(ChangeDetectorRef);
+    private _cdr = inject(ChangeDetectorRef);
 
-    private lastLang = this.i18n.language();
+    private _lastLang = this._i18n.language();
 
-    private subscription: any;
+    private _subscription: any;
 
     constructor() {
-        this.subscription = setInterval(() => {
-            const currentLang = this.i18n.language();
-            if (currentLang !== this.lastLang) {
-                this.lastLang = currentLang;
-                this.cdr.markForCheck();
+        this._subscription = setInterval(() => {
+            const currentLang = this._i18n.language();
+            if (currentLang !== this._lastLang) {
+                this._lastLang = currentLang;
+                this._cdr.markForCheck();
             }
         }, 100);
     }
 
-    ngOnDestroy(): void {
-        if (this.subscription) {
-            clearInterval(this.subscription);
+    public ngOnDestroy(): void {
+        if (this._subscription) {
+            clearInterval(this._subscription);
         }
     }
 
-    transform(key: string): string {
-        return this.i18n.translate(key);
+    public transform(key: string): string {
+        return this._i18n.translate(key);
     }
 }

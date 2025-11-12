@@ -8,8 +8,8 @@ import { Component, input } from '@angular/core';
     standalone: true
 })
 export class ImageComponent {
-    public src = input.required<string>();
+    public readonly src = input.required<string>();
 
-    public alt = input.required<string>();
+    public readonly alt = input.required<string>();
 
 }

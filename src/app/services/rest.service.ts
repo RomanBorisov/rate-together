@@ -11,7 +11,7 @@ type  ResponseRaw = any;
     providedIn: 'root'
 })
 export class RestService {
-    private _restOptionsDefault: RestOptions = {
+    private _restOptionsDefault: IRestOptions = {
         isApiResponse: true,
         hasNote: true,
         urlPrefix: environment.apiUrl
@@ -22,7 +22,7 @@ export class RestService {
     ) {
     }
 
-    public restGET<T = ResponseRaw>(endpoint: string, params: GET_PARAMS = {}, options?: Omit<RestOptions, 'body'>): Observable<T> {
+    public restGET<T = ResponseRaw>(endpoint: string, params: GET_PARAMS = {}, options?: Omit<IRestOptions, 'body'>): Observable<T> {
         return this.request('GET', endpoint, {
             ...options,
             params: new HttpParams({
@@ -31,7 +31,7 @@ export class RestService {
         });
     }
 
-    public restGETBlob(endpoint: string, options?: Omit<RestOptions, 'body'>): Observable<Blob> {
+    public restGETBlob(endpoint: string, options?: Omit<IRestOptions, 'body'>): Observable<Blob> {
         return this.request('GET', endpoint, {
             ...options,
             responseType: 'blob',
@@ -39,7 +39,7 @@ export class RestService {
         });
     }
 
-    public restGETText<T = ResponseRaw>(endpoint: string, options?: Omit<RestOptions, 'body'>): Observable<T> {
+    public restGETText<T = ResponseRaw>(endpoint: string, options?: Omit<IRestOptions, 'body'>): Observable<T> {
         return this.request('GET', endpoint, {
             ...options,
             responseType: 'text',
@@ -47,14 +47,14 @@ export class RestService {
         });
     }
 
-    public restPOST<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<RestOptions, 'body'>): Observable<T> {
+    public restPOST<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<IRestOptions, 'body'>): Observable<T> {
         return this.request('POST', endpoint, {
             ...options,
             body
         });
     }
 
-    public restPOSTFormData<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<RestOptions, 'body'>): Observable<T> {
+    public restPOSTFormData<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<IRestOptions, 'body'>): Observable<T> {
         const formData: FormData = new FormData();
         this._convertObjectToFormData(body, formData);
 
@@ -64,7 +64,7 @@ export class RestService {
         });
     }
 
-    public restPOSTBlob(endpoint: string, body: object | null = null, options?: Omit<RestOptions, 'body'>): Observable<HttpEvent<Blob>> {
+    public restPOSTBlob(endpoint: string, body: object | null = null, options?: Omit<IRestOptions, 'body'>): Observable<HttpEvent<Blob>> {
         return this.request('POST', endpoint, {
             ...options,
             body,
@@ -74,26 +74,26 @@ export class RestService {
         });
     }
 
-    public restPUT<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<RestOptions, 'body'>): Observable<T> {
+    public restPUT<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<IRestOptions, 'body'>): Observable<T> {
         return this.request('PUT', endpoint, {
             ...options,
             body
         });
     }
 
-    public restDELETE<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<RestOptions, 'body'>): Observable<T> {
+    public restDELETE<T = ResponseRaw>(endpoint: string, body: object | null = null, options?: Omit<IRestOptions, 'body'>): Observable<T> {
         return this.request('DELETE', endpoint, {
             ...options,
             body
         });
     }
 
-    public request<T>(method: string, endpoint: string, options: RestOptions = this._restOptionsDefault): Observable<T> {
+    public request<T>(method: string, endpoint: string, options: IRestOptions = this._restOptionsDefault): Observable<T> {
         const preparedOptions = this._prepareRestOptions(options);
 
         const context = new HttpContext();
 
-        const httpOptions: HttpOptions = {
+        const httpOptions: IHttpOptions = {
             ...preparedOptions,
             context,
         };
@@ -144,7 +144,7 @@ export class RestService {
         }
     }
 
-    private _prepareRestOptions(options: RestOptions = this._restOptionsDefault): RestOptions {
+    private _prepareRestOptions(options: IRestOptions = this._restOptionsDefault): IRestOptions {
         return {
             ...options,
             isApiResponse: options.isApiResponse ?? this._restOptionsDefault.isApiResponse,
@@ -154,13 +154,13 @@ export class RestService {
     }
 }
 
-export interface RestOptions extends HttpOptions {
+export interface IRestOptions extends IHttpOptions {
     isApiResponse?: boolean;
     hasNote?: boolean;
     urlPrefix?: string;
 }
 
-interface HttpOptions {
+interface IHttpOptions {
     body?: any;
     headers?: HttpHeaders | Record<string, string | string[]>;
     context?: HttpContext;

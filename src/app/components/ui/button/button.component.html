@@ -1,5 +1,5 @@
 <button
-    (click)="onClick()"
+    class="button"
     [class.button--full-width]="fullWidth()"
     [class.button--loading]="loading()"
     [class.button--outline]="variant() === 'outline'"
@@ -7,7 +7,7 @@
     [class.button--secondary]="variant() === 'secondary'"
     [disabled]="disabled() || loading()"
     [type]="type()"
-    class="button"
+    (click)="onClick()"
 >
     @if (loading()) {
         <i class="button__icon button__icon--loading fas fa-spinner fa-spin"></i>
@@ -18,6 +18,6 @@
         ></i>
     }
     <span class="button__text">
-        <ng-content></ng-content>
+        <ng-content />
     </span>
 </button>

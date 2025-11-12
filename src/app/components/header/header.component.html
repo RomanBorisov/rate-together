@@ -20,25 +20,25 @@
 
         <div class="header__actions">
             <button
-                (click)="toggleLanguage()"
-                [attr.aria-label]="'Switch language'"
                 class="header__lang-toggle"
                 type="button"
+                [attr.aria-label]="'Switch language'"
+                (click)="toggleLanguage()"
             >
                 <i class="header__lang-icon fas fa-globe"></i>
                 <span class="header__lang-text">{{ currentLanguage() }}</span>
             </button>
 
             <button
-                (click)="toggleTheme()"
-                [attr.aria-label]="(isDarkTheme() ? 'HEADER.SWITCH_TO_LIGHT' : 'HEADER.SWITCH_TO_DARK') | translate"
                 class="header__theme-toggle"
                 type="button"
+                [attr.aria-label]="(isDarkTheme() ? 'HEADER.SWITCH_TO_LIGHT' : 'HEADER.SWITCH_TO_DARK') | translate"
+                (click)="toggleTheme()"
             >
                 <i
+                    class="header__theme-icon fas"
                     [class.fa-moon]="!isDarkTheme()"
                     [class.fa-sun]="isDarkTheme()"
-                    class="header__theme-icon fas"
                 ></i>
             </button>
         </div>

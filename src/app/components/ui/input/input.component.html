@@ -1,7 +1,7 @@
 <div class="input">
     <label
-        [for]="id()"
         class="input__label"
+        [for]="id()"
     >
         @if (icon()) {
             <i
@@ -11,14 +11,14 @@
         <span class="input__label-text">{{ label() }}</span>
     </label>
     <input
-        (blur)="onBlur()"
-        (input)="onInputChange($any($event.target).value)"
+        class="input__field"
         [disabled]="disabled"
         [id]="id()"
         [placeholder]="placeholder()"
         [required]="required()"
         [type]="type()"
         [value]="value"
-        class="input__field"
+        (blur)="onBlur()"
+        (input)="handleInput($event)"
     />
 </div>

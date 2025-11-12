@@ -18,15 +18,15 @@ export class HeaderComponent {
 
     protected i18n = inject(I18nService);
 
-    protected isDarkTheme = computed(() => this.themeService.theme() === Theme.DARK);
+    protected readonly isDarkTheme = computed(() => this.themeService.theme() === Theme.DARK);
 
-    protected currentLanguage = computed(() => this.i18n.language().toUpperCase());
+    protected readonly currentLanguage = computed(() => this.i18n.language().toUpperCase());
 
-    toggleTheme(): void {
+    protected toggleTheme(): void {
         this.themeService.toggleTheme();
     }
 
-    toggleLanguage(): void {
+    protected toggleLanguage(): void {
         this.i18n.toggleLanguage();
     }
 }

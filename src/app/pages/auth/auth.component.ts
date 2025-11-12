@@ -33,37 +33,37 @@ export class AuthComponent {
 
     protected i18n = inject(I18nService);
 
-    protected mode = signal<AuthMode>(AuthMode.LOGIN);
+    protected readonly mode = signal<AuthMode>(AuthMode.LOGIN);
 
-    protected email = signal('');
+    protected readonly email = signal('');
 
-    protected password = signal('');
+    protected readonly password = signal('');
 
-    protected confirmPassword = signal('');
+    protected readonly confirmPassword = signal('');
 
-    protected username = signal('');
+    protected readonly username = signal('');
 
-    protected loading = signal(false);
+    protected readonly loading = signal(false);
 
-    protected isLoginMode = computed(() => this.mode() === AuthMode.LOGIN);
+    protected readonly isLoginMode = computed(() => this.mode() === AuthMode.LOGIN);
 
-    protected isRegisterMode = computed(() => this.mode() === AuthMode.REGISTER);
+    protected readonly isRegisterMode = computed(() => this.mode() === AuthMode.REGISTER);
 
-    switchMode(): void {
-        this.mode.update(current => current === AuthMode.LOGIN
+    protected switchMode(): void {
+        this.mode.update((current) => current === AuthMode.LOGIN
             ? AuthMode.REGISTER
             : AuthMode.LOGIN);
         this.clearForm();
     }
 
-    clearForm(): void {
+    protected clearForm(): void {
         this.email.set('');
         this.password.set('');
         this.confirmPassword.set('');
         this.username.set('');
     }
 
-    onSubmit(): void {
+    protected onSubmit(): void {
         this.loading.set(true);
 
         // Simulating request

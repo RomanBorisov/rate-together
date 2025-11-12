@@ -9,5 +9,5 @@ import { HeaderComponent } from './components/header/header.component';
     styleUrl: './app.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class App {
+export class AppComponent {
 }

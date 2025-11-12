@@ -10,31 +10,29 @@ const STORAGE_KEYS = {
     LANGUAGE: 'app-language'
 } as const;
 
-interface TranslationData {
-    [key: string]: any;
-}
+type TranslationData = Record<string, any>;
 
 @Injectable({
     providedIn: 'root'
 })
 export class I18nService {
-    public language = signal<Language>(this.getInitialLanguage());
+    public readonly language = signal<Language>(this._getInitialLanguage());
 
-    private translations = signal<TranslationData>({});
+    private readonly _translations = signal<TranslationData>({});
 
-    constructor(private http: HttpClient) {
+    constructor(private _http: HttpClient) {
         // Load initial translations
-        this.loadTranslations(this.language());
+        this._loadTranslations(this.language());
 
         effect(() => {
             const currentLang = this.language();
-            this.saveLanguage(currentLang);
-            this.loadTranslations(currentLang);
+            this._saveLanguage(currentLang);
+            this._loadTranslations(currentLang);
         });
     }
 
     public toggleLanguage(): void {
-        this.language.update(current =>
+        this.language.update((current) =>
             current === Language.EN
                 ? Language.RU
                 : Language.EN
@@ -47,7 +45,7 @@ export class I18nService {
 
     public translate(key: string): string {
         const keys = key.split('.');
-        let value: any = this.translations();
+        let value: any = this._translations();
 
         for (const k of keys) {
             if (value && typeof value === 'object' && k in value) {
@@ -63,15 +61,15 @@ export class I18nService {
             : key;
     }
 
-    private loadTranslations(lang: Language): void {
+    private _loadTranslations(lang: Language): void {
         const path = `/assets/i18n/${lang}.json`;
-        this.http.get<TranslationData>(path).subscribe({
-            next: (data) => this.translations.set(data),
+        this._http.get<TranslationData>(path).subscribe({
+            next: (data) => this._translations.set(data),
             error: (error) => console.error('Failed to load translations:', error)
         });
     }
 
-    private getInitialLanguage(): Language {
+    private _getInitialLanguage(): Language {
         const savedLang = localStorage.getItem(STORAGE_KEYS.LANGUAGE) as Language | null;
         if (savedLang === Language.EN || savedLang === Language.RU) {
             return savedLang;
@@ -85,7 +83,7 @@ export class I18nService {
         return Language.EN;
     }
 
-    private saveLanguage(lang: Language): void {
+    private _saveLanguage(lang: Language): void {
         localStorage.setItem(STORAGE_KEYS.LANGUAGE, lang);
     }
 }

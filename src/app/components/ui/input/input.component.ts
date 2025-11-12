@@ -23,50 +23,57 @@ export enum InputType {
     ]
 })
 export class InputComponent implements ControlValueAccessor {
-    id = input<string>('');
+    public readonly id = input<string>('');
 
-    type = input<InputType>(InputType.TEXT);
+    public readonly type = input<InputType>(InputType.TEXT);
 
-    placeholder = input<string>('');
+    public readonly placeholder = input<string>('');
 
-    label = input<string>('');
+    public readonly label = input<string>('');
 
-    icon = input<string>('');
+    public readonly icon = input<string>('');
 
-    required = input<boolean>(false);
+    public readonly required = input<boolean>(false);
 
-    value = '';
+    public value = '';
 
-    disabled = false;
+    public disabled = false;
 
-    writeValue(value: string): void {
+    public writeValue(value: string): void {
         this.value = value || '';
     }
 
-    registerOnChange(fn: (value: string) => void): void {
-        this.onChange = fn;
+    public registerOnChange(fn: (value: string) => void): void {
+        this._onChange = fn;
     }
 
-    registerOnTouched(fn: () => void): void {
-        this.onTouched = fn;
+    public registerOnTouched(fn: () => void): void {
+        this._onTouched = fn;
     }
 
-    setDisabledState(isDisabled: boolean): void {
+    public setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
 
-    onInputChange(value: string): void {
+    public handleInput(event: Event): void {
+        const target = event.target as HTMLInputElement;
+        this.onInputChange(target.value);
+    }
+
+    public onInputChange(value: string): void {
         this.value = value;
-        this.onChange(value);
+        this._onChange(value);
     }
 
-    onBlur(): void {
-        this.onTouched();
+    public onBlur(): void {
+        this._onTouched();
     }
 
-    private onChange: (value: string) => void = () => {
+    private _onChange: (value: string) => void = () => {
+        // Callback registered by ControlValueAccessor
     };
 
-    private onTouched: () => void = () => {
+    private _onTouched: () => void = () => {
+        // Callback registered by ControlValueAccessor
     };
 }

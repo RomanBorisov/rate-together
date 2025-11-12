@@ -20,21 +20,21 @@ export enum ButtonVariant {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
-    type = input<ButtonType>(ButtonType.BUTTON);
+    public readonly type = input<ButtonType>(ButtonType.BUTTON);
 
-    variant = input<ButtonVariant>(ButtonVariant.PRIMARY);
+    public readonly variant = input<ButtonVariant>(ButtonVariant.PRIMARY);
 
-    icon = input<string>('');
+    public readonly icon = input<string>('');
 
-    disabled = input<boolean>(false);
+    public readonly disabled = input<boolean>(false);
 
-    fullWidth = input<boolean>(false);
+    public readonly fullWidth = input<boolean>(false);
 
-    loading = input<boolean>(false);
+    public readonly loading = input<boolean>(false);
 
-    btnClick = output<void>();
+    public readonly btnClick = output<void>();
 
-    onClick(): void {
+    public onClick(): void {
         if (!this.disabled() && !this.loading()) {
             this.btnClick.emit();
         }
